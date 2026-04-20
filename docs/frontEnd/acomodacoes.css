@@ -1,0 +1,322 @@
+/* PÁGINA DE ACOMODAÇÕES */
+.page-acomodacoes {
+    background-color: var(--fundo-cinza);
+}
+
+.acomodacao-main {
+    padding-top: 56px;
+}
+
+/* IMAGEM DO QUARTO */
+.quarto-imagem-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 0;
+}
+
+.quarto-imagem {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.acomodacao-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 50px;
+}
+
+/* COLUNA ESQUERDA - INFORMAÇÕES */
+.info-coluna {
+    padding-right: 20px;
+}
+
+.quarto-titulo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--azul-marinho);
+    margin-bottom: 12px;
+}
+
+.localizacao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-claro);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.localizacao svg {
+    flex-shrink: 0;
+}
+
+.quarto-descricao {
+    color: var(--texto-claro);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.dados-residencia {
+    margin-bottom: 32px;
+}
+
+.dados-residencia h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto-escuro);
+    margin-bottom: 12px;
+}
+
+.dados-residencia ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: var(--texto-claro);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.dados-residencia li {
+    margin-bottom: 2px;
+}
+
+/* COMODIDADES */
+.comodidades h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--verde-mata);
+    margin-bottom: 16px;
+}
+
+.comodidades-tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.comodidade-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e8e8e8;
+    color: var(--texto-escuro);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 24px;
+    border-radius: 8px;
+}
+
+/* COLUNA DIREITA - FORMULÁRIO DE RESERVA */
+.reserva-coluna {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+}
+
+.reserva-card {
+    background-color: var(--branco);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.reserva-titulo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--verde-mata);
+    margin-bottom: 24px;
+}
+
+.reserva-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto-escuro);
+}
+
+.form-group input {
+    padding: 12px 14px;
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+    color: var(--texto-escuro);
+    background-color: var(--fundo-cinza);
+    transition: border-color 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #9ca3af;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--verde-mata);
+}
+
+/* INFORMAÇÕES DA RESERVA */
+.reserva-info {
+    padding-top: 8px;
+    border-top: 1px solid var(--borda-clara);
+    margin-top: 8px;
+}
+
+.reserva-info p {
+    font-size: 13px;
+    color: var(--texto-claro);
+    margin-bottom: 4px;
+}
+
+/* TOTAL */
+.reserva-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.total-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--verde-mata);
+}
+
+.total-valor {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--azul-marinho);
+}
+
+/* BOTÃO FINALIZAR */
+.btn-finalizar {
+    width: 100%;
+    background-color: var(--verde-mata);
+    color: var(--branco);
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 8px;
+}
+
+.btn-finalizar:hover {
+    background-color: #005a3d;
+}
+
+/* FOOTER ACOMODAÇÕES */
+.footer-acomodacoes {
+    background-color: var(--fundo-cinza);
+    border-top: 1px solid var(--borda-clara);
+    padding: 24px 48px;
+}
+
+.footer-acomodacoes .footer-logo span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--azul-marinho);
+    letter-spacing: 0.5px;
+}
+
+.footer-acomodacoes .footer-center {
+    gap: 32px;
+}
+
+.footer-acomodacoes .footer-center a {
+    font-size: 12px;
+    color: var(--texto-claro);
+    letter-spacing: 0.5px;
+}
+
+.footer-copy-right {
+    font-size: 12px;
+    color: var(--texto-claro);
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+    .acomodacao-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .info-coluna {
+        padding-right: 0;
+    }
+    
+    .reserva-coluna {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .quarto-imagem {
+        height: 280px;
+        border-radius: 12px;
+    }
+    
+    .quarto-titulo {
+        font-size: 28px;
+    }
+    
+    .acomodacao-content {
+        padding: 30px 20px 40px;
+    }
+    
+    .comodidades-tags {
+        flex-direction: column;
+    }
+    
+    .comodidade-tag {
+        justify-content: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-acomodacoes {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 24px 20px;
+    }
+    
+    .footer-acomodacoes .footer-center {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
