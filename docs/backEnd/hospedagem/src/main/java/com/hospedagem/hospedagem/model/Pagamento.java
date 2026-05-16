@@ -9,7 +9,7 @@ public class Pagamento {
 
     private int id;
     private double valor;
-    private String status;
+    private StatusPagamento status;
     private String formaPagamento;
     private Date dataPagamento;
 
@@ -22,7 +22,7 @@ public class Pagamento {
         pagamento.id = pagamentos.size() + 1;
         pagamento.valor = valor;
         pagamento.formaPagamento = formaPagamento;
-        pagamento.status = "PENDENTE";
+        pagamento.status = StatusPagamento.PENDENTE;
         pagamento.dataPagamento = new Date();
 
         pagamentos.add(pagamento);
@@ -36,7 +36,7 @@ public class Pagamento {
 
             if (pagamento.id == id) {
 
-                pagamento.status = status;
+                pagamento.status = StatusPagamento.valueOf(status);
 
                 break;
             }
@@ -73,11 +73,11 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public String getStatus() {
+    public StatusPagamento getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusPagamento status) {
         this.status = status;
     }
 
