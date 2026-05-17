@@ -1,52 +1,33 @@
 package com.hospedagem.hospedagem.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "log_auditoria")
 public class LogAuditoria {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String entidade;
-    private int entidadeId;
+    private Integer entidadeId;
     private String acao;
     private LocalDateTime dataHora;
     private String usuario;
     private String detalhes;
 
-     private static List<LogAuditoria> logs = new ArrayList<>();
-
-    public void registrar(String entidade, int entidadeId, String acao, String usuario, String detalhes) {
-
-        LogAuditoria log = new LogAuditoria();
-
-        log.id = logs.size() + 1;
-        log.entidade = entidade;
-        log.entidadeId = entidadeId;
-        log.acao = acao;
-        log.usuario = usuario;
-        log.detalhes = detalhes;
-        log.dataHora = LocalDateTime.now();
-
-        logs.add(log);
+    @PrePersist
+    public void preencherDataHora() {
+        this.dataHora = LocalDateTime.now();
     }
-
-    public List<LogAuditoria> consultar(String filtro) {
-
-        List<LogAuditoria> resultado = new ArrayList<>();
-        
-         for (LogAuditoria log : logs) {
-            if (log.entidade.contains(filtro)
-                    || log.acao.contains(filtro)
-                    || log.usuario.contains(filtro)
-                    || log.detalhes.contains(filtro)) {
-
-                resultado.add(log);
-            }
-         }
-        return resultado;
-    }
-
     //Getters e setters
     public int getId() {
         return id;

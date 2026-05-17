@@ -1,100 +1,42 @@
 package com.hospedagem.hospedagem.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
-
+@Entity
+@Table(name = "pagamentos")
 public class Pagamento {
 
-    private int id;
-    private double valor;
-    private String status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private Double valor;
     private String formaPagamento;
-    private Date dataPagamento;
+    private LocalDate dataPagamento;
 
-    private static List<Pagamento> pagamentos = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private StatusPagamento status;
 
-    public Pagamento registrar(int reservaId, double valor, String formaPagamento) {
+    @OneToOne
+    @JoinColumn(name = "reserva_id")
+    private Reserva reserva;
 
-        Pagamento pagamento = new Pagamento();
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-        pagamento.id = pagamentos.size() + 1;
-        pagamento.valor = valor;
-        pagamento.formaPagamento = formaPagamento;
-        pagamento.status = "PENDENTE";
-        pagamento.dataPagamento = new Date();
+    public Double getValor() { return valor; }
+    public void setValor(Double valor) { this.valor = valor; }
 
-        pagamentos.add(pagamento);
+    public String getFormaPagamento() { return formaPagamento; }
+    public void setFormaPagamento(String formaPagamento) { this.formaPagamento = formaPagamento; }
 
-        return pagamento;
-    }
+    public LocalDate getDataPagamento() { return dataPagamento; }
+    public void setDataPagamento(LocalDate dataPagamento) { this.dataPagamento = dataPagamento; }
 
-       public void atualizarStatus(int id, String status) {
+    public StatusPagamento getStatus() { return status; }
+    public void setStatus(StatusPagamento status) { this.status = status; }
 
-        for (Pagamento pagamento : pagamentos) {
-
-            if (pagamento.id == id) {
-
-                pagamento.status = status;
-
-                break;
-            }
-        }
-    }
-
-     public Pagamento consultar(int id) {
-
-        for (Pagamento pagamento : pagamentos) {
-
-            if (pagamento.id == id) {
-
-                return pagamento;
-            }
-        }
-
-        return null;
-    }
-
-    //Getters e setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
-
-    public Date getDataPagamento() {
-        return dataPagamento;
-    }
-
-    public void setDataPagamento(Date dataPagamento) {
-        this.dataPagamento = dataPagamento;
-    }
-    
+    public Reserva getReserva() { return reserva; }
+    public void setReserva(Reserva reserva) { this.reserva = reserva; }
 }

@@ -1,118 +1,93 @@
 package com.hospedagem.hospedagem.model;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
+@Entity
+@Table(name = "reserva")
 public class Reserva {
 
-    private int id;
-    private Date dataEntrada;
-    private Date dataSaida;
-    private int qtdDiarias;
-    private double valorFinal;
-    private String status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private static List<Reserva> reservas = new ArrayList<>();
+    private LocalDate dataEntrada;
+    private LocalDate dataSaida;
+    private Integer qtdDiarias;
+    private Double valorFinal;
 
-    public Reserva cadastrar(int clienteId, int quartoId, Date dataEntrada, Date dataSaida) {
+    @Enumerated(EnumType.STRING)
+    private StatusReserva status;
 
-        Reserva reserva = new Reserva();
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-        reserva.id = reservas.size() + 1;
-        reserva.dataEntrada = dataEntrada;
-        reserva.dataSaida = dataSaida;
-        reserva.qtdDiarias = reserva.calcularDiarias();
-        reserva.valorFinal = reserva.calcularValor();
-        reserva.status = "ATIVA";
+    @ManyToOne
+    @JoinColumn(name = "quarto_id")
+    private Quarto quarto;
 
-        reservas.add(reserva);
-        return reserva;
-    }
-
-     public int calcularDiarias() {
-
-        long diferenca = dataSaida.getTime() - dataEntrada.getTime();
-        return (int) (diferenca / (1000 * 60 * 60 * 24));
-    }
-
-    public double calcularValor() {
-        return qtdDiarias * 150;
-    }
-
-    public void atualizar(int id, Date dataEntrada, Date dataSaida, String status) {
-
-        for (Reserva reserva : reservas) {
-            if (reserva.id == id) {
-
-                reserva.dataEntrada = dataEntrada;
-                reserva.dataSaida = dataSaida;
-                reserva.status = status;
-                reserva.qtdDiarias = reserva.calcularDiarias();
-                reserva.valorFinal = reserva.calcularValor();
-                break;
-            }
-        }
-    }
-
-    public void cancelar(int id) {
-        
-        for (Reserva reserva : reservas) {
-            if (reserva.id == id) {
-
-                reserva.status = "CANCELADA";
-                break;
-            }
-        }
-    }
-    
-    //Getters e setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Date getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 
-    public int getQtdDiarias() {
+    public Integer getQtdDiarias() {
         return qtdDiarias;
     }
 
-    public void setQtdDiarias(int qtdDiarias) {
+    public void setQtdDiarias(Integer qtdDiarias) {
         this.qtdDiarias = qtdDiarias;
     }
 
-    public double getValorFinal() {
+    public Double getValorFinal() {
         return valorFinal;
     }
 
-    public void setValorFinal(double valorFinal) {
+    public void setValorFinal(Double valorFinal) {
         this.valorFinal = valorFinal;
     }
 
-    public String getStatus() {
+    public StatusReserva getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusReserva status) {
         this.status = status;
     }
-    
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Quarto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(Quarto quarto) {
+        this.quarto = quarto;
+    }
 }
