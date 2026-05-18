@@ -2,7 +2,7 @@ package com.hospedagem.hospedagem.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.hospedagem.hospedagem.model.QuartoFamilia;
@@ -22,7 +22,16 @@ public class QuartoFamiliaService {
 
     public QuartoFamilia buscarPorId(Integer id){
         return quartoFamiliaRepository.findById(id)
-        .orElseThrow(() -> new ResponseStatusException
-        (HttpStatusCode.NOT_FOUND, "Quarto familia nao encontrado"));
+            .orElseThrow(() -> new ResponseStatusException
+            (HttpStatus.NOT_FOUND, "Quarto familia nao encontrado"));
+    }
+
+    public QuartoFamilia salvar(QuartoFamilia quartoFamilia){
+        return quartoFamiliaRepository.save(quartoFamilia);
+    }
+
+    public void excluir(Integer id){
+        buscarPorId(id);
+        quartoFamiliaRepository.deleteById(id);
     }
 }
