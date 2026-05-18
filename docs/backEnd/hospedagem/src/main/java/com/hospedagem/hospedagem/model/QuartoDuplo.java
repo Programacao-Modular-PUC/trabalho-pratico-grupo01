@@ -13,16 +13,14 @@ public class QuartoDuplo extends Quarto{
     private TipoCama tipoCama;
     private boolean berco;
     private double valorCamaComum;
-    private double valorCamaKing;
+    private double valorCamaKingQueen;
     private double valorCamaBerco;
 
     public QuartoDuplo() {
         super();
     }
 
-    public QuartoDuplo(String tipo, double valorBase, boolean possuiAr, boolean possuiHidro, StatusQuarto status,
-            TipoCama tipoCama, boolean berco, double valorCamaComum, double valorCamaKing,
-            double valorCamaBerco) {
+    public QuartoDuplo(String tipo, double valorBase, boolean possuiAr, boolean possuiHidro, StatusQuarto status, TipoCama tipoCama, boolean berco, double valorCamaComum, double valorCamaKingQueen, double valorCamaBerco) {
         super();
         setTipo(tipo);
         setValorBase(valorBase);
@@ -32,7 +30,7 @@ public class QuartoDuplo extends Quarto{
         this.tipoCama = tipoCama;
         this.berco = berco;
         this.valorCamaComum = valorCamaComum;
-        this.valorCamaKing = valorCamaKing;
+        this.valorCamaKingQueen = valorCamaKingQueen;
         this.valorCamaBerco = valorCamaBerco;
     }
 
@@ -60,12 +58,12 @@ public class QuartoDuplo extends Quarto{
         this.valorCamaComum = valorCamaComum;
     }
 
-    public double getValorCamaKing() {
-        return valorCamaKing;
+    public double getValorCamaKingQueen() {
+        return valorCamaKingQueen;
     }
 
-    public void setValorCamaKing(double valorCamaKing) {
-        this.valorCamaKing = valorCamaKing;
+    public void setValorCamaKingQueen(double valorCamaKingQueen) {
+        this.valorCamaKingQueen = valorCamaKingQueen;
     }
     
     public double getValorCamaBerco() {
@@ -91,7 +89,7 @@ public class QuartoDuplo extends Quarto{
         if (tipoCama == TipoCama.COMUM) {
             valorTotal += valorCamaComum;
         } else if (tipoCama == TipoCama.QUEEN || tipoCama == TipoCama.KING) {
-            valorTotal += valorCamaKing;
+            valorTotal += valorCamaKingQueen;
         }
 
         if (berco) {
