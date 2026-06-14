@@ -30,6 +30,7 @@ public class QuartoFamilia extends Quarto{
         this.valorPessoa = valorPessoa;
     }
 
+    @Override
     public double calcularValor(){
         double valorTotal = getValorBase();
 

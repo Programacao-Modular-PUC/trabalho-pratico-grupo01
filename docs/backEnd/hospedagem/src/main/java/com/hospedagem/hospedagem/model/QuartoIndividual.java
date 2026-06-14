@@ -20,14 +20,13 @@ public class QuartoIndividual extends Quarto{
         this.valorCama = valorCama;
     }
 
-    public double CalcularValor(){
+    @Override
+    public double calcularValor(){
         
-        double valorTotal = 0, valorBase = getValorBase();
+        double valorTotal = getValorBase();
 
-        if (numCamas == 1){
-            valorTotal = valorBase;
-        }else if(numCamas > 1){
-            valorTotal = (valorBase + (valorCama * numCamas));
+        if (numCamas > 0){
+            valorTotal += (valorCama * numCamas);
         }
 
         return valorTotal;
