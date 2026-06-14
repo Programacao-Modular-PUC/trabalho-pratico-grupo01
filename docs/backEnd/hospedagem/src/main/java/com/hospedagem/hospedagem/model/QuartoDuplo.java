@@ -1,5 +1,7 @@
 package com.hospedagem.hospedagem.model;
 
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponiveExeption;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -22,6 +24,27 @@ public class QuartoDuplo extends Quarto{
 
     public QuartoDuplo(String tipo, double valorBase, boolean possuiAr, boolean possuiHidro, StatusQuarto status, TipoCama tipoCama, boolean berco, double valorCamaComum, double valorCamaKingQueen, double valorCamaBerco) {
         super();
+
+        if (tipoCama == null) {
+            throw new IllegalArgumentException("Tipo de cama não pode ser nulo");
+        }
+
+        if (valorCamaComum <= 0) {
+            throw new IllegalArgumentException("Valor da cama comum deve ser maior que 0");
+        }
+
+        if (valorCamaKingQueen <= 0) {
+            throw new IllegalArgumentException("Valor da cama King/Queen deve ser maior que 0");
+        }
+
+        if (valorCamaBerco <= 0) {
+            throw new IllegalArgumentException("Valor do cama deve ser maior que 0");
+        }
+
+        if (status == StatusQuarto.INATIVO){
+            throw new QuartoIndisponiveExeption("Quarto inativo não pode ser utilizado");
+        }
+
         setTipo(tipo);
         setValorBase(valorBase);
         setPossuiAr(possuiAr);
@@ -32,6 +55,23 @@ public class QuartoDuplo extends Quarto{
         this.valorCamaComum = valorCamaComum;
         this.valorCamaKingQueen = valorCamaKingQueen;
         this.valorCamaBerco = valorCamaBerco;
+    }
+
+    @Override
+    public double calcularValor() {
+        double valorTotal = getValorBase();
+
+        if (tipoCama == TipoCama.COMUM) {
+            valorTotal += valorCamaComum;
+        } else if (tipoCama == TipoCama.QUEEN || tipoCama == TipoCama.KING) {
+            valorTotal += valorCamaKingQueen;
+        }
+
+        if (berco) {
+            valorTotal += valorCamaBerco;
+        }
+
+        return valorTotal;
     }
 
     public boolean isBerco() {
@@ -80,23 +120,6 @@ public class QuartoDuplo extends Quarto{
 
     public void cancelarBerco() {
         this.berco = false;
-    }
-
-    @Override
-    public double calcularValor() {
-        double valorTotal = getValorBase();
-
-        if (tipoCama == TipoCama.COMUM) {
-            valorTotal += valorCamaComum;
-        } else if (tipoCama == TipoCama.QUEEN || tipoCama == TipoCama.KING) {
-            valorTotal += valorCamaKingQueen;
-        }
-
-        if (berco) {
-            valorTotal += valorCamaBerco;
-        }
-
-        return valorTotal;
     }
 
 }

@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.hospedagem.hospedagem.model.QuartoIndividual;
+import com.hospedagem.hospedagem.model.StatusQuarto;
 
 
 public class QuartoIndividualTest {
     
-    QuartoIndividual quartoIndividual = new QuartoIndividual("Individual", 100, true, true, 5, 100);
+    QuartoIndividual quartoIndividual = new QuartoIndividual("Individual", 100, true, true, StatusQuarto.ATIVO, 5, 100);
     
     @Test
     public void testCalcularValor(){

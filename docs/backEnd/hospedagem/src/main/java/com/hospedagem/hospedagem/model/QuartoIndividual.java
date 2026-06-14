@@ -1,5 +1,7 @@
 package com.hospedagem.hospedagem.model;
 
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponiveExeption;
+
 public class QuartoIndividual extends Quarto{
     
     private int numCamas;
@@ -9,15 +11,26 @@ public class QuartoIndividual extends Quarto{
 
     }
 
-    public QuartoIndividual(String tipo, double valorBase, boolean possuiAr, boolean possuiHidro, int numCamas, double valorCama){
+    public QuartoIndividual(String tipo, double valorBase, boolean possuiAr, boolean possuiHidro, StatusQuarto status, int numCamas, double valorCama){
         super();
+
+        if (status == StatusQuarto.INATIVO){
+            throw new QuartoIndisponiveExeption("Quarto inativo não pode ser utilizado");
+        }
+
+        if (valorCama <= 0) {
+            throw new IllegalArgumentException("Valor da cama deve ser maior que 0");
+        }
+
         setTipo(tipo);
         setValorBase(valorBase);
         setPossuiAr(possuiAr);
         setPossuiHidro(possuiHidro);
-
+        setStatus(status);
         this.numCamas = numCamas;
         this.valorCama = valorCama;
+
+
     }
 
     @Override
