@@ -1,6 +1,7 @@
 package com.hospedagem.hospedagem.model;
 
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponiveExeption;
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
+import com.hospedagem.hospedagem.exeptions.RecursoNaoPermitidoException;
 
 public class QuartoIndividual extends Quarto{
     
@@ -15,7 +16,7 @@ public class QuartoIndividual extends Quarto{
         super();
 
         if (status == StatusQuarto.INATIVO){
-            throw new QuartoIndisponiveExeption("Quarto inativo não pode ser utilizado");
+            throw new QuartoIndisponivelException("Quarto inativo não pode ser utilizado");
         }
 
         if (valorCama <= 0) {
@@ -60,6 +61,10 @@ public class QuartoIndividual extends Quarto{
 
     public void setValorCama(double valorCama) {
         this.valorCama = valorCama;
+    }
+
+    public void solicitarBerco() {
+        throw new RecursoNaoPermitidoException("Berço não é permitido em quartos individuais");
     }
 
 }

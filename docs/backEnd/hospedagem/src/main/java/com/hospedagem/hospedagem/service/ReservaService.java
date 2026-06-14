@@ -1,6 +1,8 @@
 package com.hospedagem.hospedagem.service;
 
 import com.hospedagem.hospedagem.DTO.ReservaRequestDTO;
+import com.hospedagem.hospedagem.exeptions.DataInvalidaException;
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
 import com.hospedagem.hospedagem.model.*;
 import com.hospedagem.hospedagem.repository.ClienteRepository;
 import com.hospedagem.hospedagem.repository.QuartoRepository;
@@ -33,6 +35,10 @@ public class ReservaService {
         return reservaRepository.findAll();
     }
 
+    public List<Reserva> listarPorCliente(Integer clienteId) {
+        return reservaRepository.findByClienteId(clienteId);
+    }
+
     public Reserva buscar(Integer id) {
         return reservaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Reserva não encontrada"));
@@ -45,11 +51,11 @@ public class ReservaService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Quarto não encontrado"));
 
         if (quarto.getStatus() == StatusQuarto.INATIVO ) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Quarto inativo");
+            throw new QuartoIndisponivelException("Quarto inativo não pode ser utilizado");
         }
 
         if (reservaRepository.existeConflitoDeDatas(dto.getQuartoId(), dto.getDataEntrada(), dto.getDataSaida())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Quarto indisponível para o período informado");
+            throw new QuartoIndisponivelException("Quarto indisponível para o período informado");
         }
 
         Cliente cliente = clienteRepository.findById(dto.getClienteId())
@@ -99,10 +105,17 @@ public class ReservaService {
         logService.registrar("Reserva", id, "CANCELAR", "Reserva cancelada");
     }
 
-    private void validarDatas(LocalDate entrada, LocalDate saida) {
+    void validarDatas(LocalDate entrada, LocalDate saida) {
+        if (entrada == null || saida == null) {
+            throw new DataInvalidaException("Datas de entrada e saída não podem ser nulas");
+        }
+        
+        if (entrada.isBefore(LocalDate.now())) {
+            throw new DataInvalidaException("Data de entrada não pode ser anterior à data atual");
+        }
+        
         if (!saida.isAfter(entrada)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Data de saída deve ser posterior à data de entrada");
+            throw new DataInvalidaException("Data de saída deve ser posterior à data de entrada");
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.hospedagem.hospedagem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
 import com.hospedagem.hospedagem.model.QuartoDuplo;
 import com.hospedagem.hospedagem.model.StatusQuarto;
 import com.hospedagem.hospedagem.model.TipoCama;
@@ -26,6 +28,13 @@ public class QuartoDuploTest {
         assertEquals(300, valorTotalBerco);
     }
 
-    
+    @Test
+    public void testQuartoInativoDeveLancarExcecao(){
+        assertThrows(QuartoIndisponivelException.class, () -> 
+            new QuartoDuplo("Duplo", 100, true, true, StatusQuarto.INATIVO, TipoCama.COMUM, false, 100, 200, 100)
+        );
+    }
+
+
 
 }

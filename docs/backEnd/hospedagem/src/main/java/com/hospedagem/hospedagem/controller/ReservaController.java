@@ -21,6 +21,11 @@ public class ReservaController {
         return reservaService.listarTodos();
     }
 
+    @GetMapping("/cliente/{clienteId}")
+    public List<Reserva> listarPorCliente(@PathVariable Integer clienteId) {
+        return reservaService.listarPorCliente(clienteId);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Reserva> buscar(@PathVariable Integer id) {
         return ResponseEntity.ok(reservaService.buscar(id));

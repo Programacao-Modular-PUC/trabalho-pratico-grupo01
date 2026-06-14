@@ -1,7 +1,7 @@
 package com.hospedagem.hospedagem.model;
 
 import com.hospedagem.hospedagem.exeptions.CapacidadeExcedidaException;
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponiveExeption;
+import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -39,7 +39,7 @@ public class QuartoFamilia extends Quarto{
         }
 
         if (status == StatusQuarto.INATIVO){
-            throw new QuartoIndisponiveExeption("Quarto inativo não pode ser utilizado");
+            throw new QuartoIndisponivelException("Quarto inativo não pode ser utilizado");
         }
 
         setTipo(tipo);
@@ -115,7 +115,7 @@ public class QuartoFamilia extends Quarto{
     @Override
     public void setStatus(StatusQuarto status) {
         if (status == StatusQuarto.INATIVO){
-            throw new QuartoIndisponiveExeption("Quarto inativo não pode ser utilizado");
+            throw new QuartoIndisponivelException("Quarto inativo não pode ser utilizado");
         }
         super.setStatus(status);
     }

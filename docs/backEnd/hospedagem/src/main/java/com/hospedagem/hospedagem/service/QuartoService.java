@@ -19,6 +19,10 @@ public class QuartoService {
 
     public List<Quarto> listarTodos() { return repository.findAll(); }
 
+    public List<Quarto> listarPorTipo(String tipo) {
+        return repository.findByTipo(tipo);
+    }
+
     public List<Quarto> listarAtivos() {
         return repository.findByStatus(StatusQuarto.ATIVO);
     }

@@ -23,6 +23,11 @@ public class QuartoController {
         return quartoService.listarTodos();
     }
 
+    @GetMapping("/tipo")
+    public List<Quarto> listarPorTipo(@RequestParam String tipo) {
+        return quartoService.listarPorTipo(tipo);
+    }
+
     @GetMapping("/ativos")
     public List<Quarto> listarAtivos() {
         return quartoService.listarAtivos();
