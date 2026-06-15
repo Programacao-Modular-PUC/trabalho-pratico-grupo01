@@ -3,11 +3,13 @@ package com.hospedagem.hospedagem.service;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.hospedagem.hospedagem.model.QuartoFamilia;
 import com.hospedagem.hospedagem.repository.QuartoFamiliaRepository;
 
+@Service
 public class QuartoFamiliaService {
     
     private QuartoFamiliaRepository quartoFamiliaRepository;
