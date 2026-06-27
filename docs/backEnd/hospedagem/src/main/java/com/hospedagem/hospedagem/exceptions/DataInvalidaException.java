@@ -1,4 +1,4 @@
-package com.hospedagem.hospedagem.exeptions;
+package com.hospedagem.hospedagem.exceptions;
 
 public class DataInvalidaException extends RuntimeException {
 

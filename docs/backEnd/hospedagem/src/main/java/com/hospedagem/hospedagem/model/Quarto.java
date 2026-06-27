@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "quartos")
-public class Quarto {
+public abstract class Quarto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,7 @@ public class Quarto {
     @Enumerated(EnumType.STRING)
     private StatusQuarto status;
 
-    public double calcularValor() {
-        return valorBase;
-    }
+    public abstract double calcularValor();
 
     // getters e setters
     public Integer getId() { return id; }

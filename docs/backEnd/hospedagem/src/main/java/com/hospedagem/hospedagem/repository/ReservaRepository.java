@@ -25,4 +25,19 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
             @Param("entrada") LocalDate entrada,
             @Param("saida") LocalDate saida
     );
+
+    @Query("""
+        SELECT COUNT(r) > 0 FROM Reserva r
+        WHERE r.quarto.id = :quartoId
+        AND r.status != 'CANCELADA'
+        AND r.dataEntrada < :saida
+        AND r.dataSaida > :entrada
+        AND r.id != :reservaId
+    """)
+    boolean existeConflitoDeDatasExcluindoId(
+            @Param("quartoId") Integer quartoId,
+            @Param("entrada") LocalDate entrada,
+            @Param("saida") LocalDate saida,
+            @Param("reservaId") Integer reservaId
+    );
 }

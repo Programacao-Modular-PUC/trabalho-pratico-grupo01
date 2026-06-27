@@ -1,8 +1,14 @@
+
 package com.hospedagem.hospedagem.model;
 
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
-import com.hospedagem.hospedagem.exeptions.RecursoNaoPermitidoException;
+import com.hospedagem.hospedagem.exceptions.QuartoIndisponivelException;
+import com.hospedagem.hospedagem.exceptions.RecursoNaoPermitidoException;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "quartos_individual")
 public class QuartoIndividual extends Quarto{
     
     private int numCamas;

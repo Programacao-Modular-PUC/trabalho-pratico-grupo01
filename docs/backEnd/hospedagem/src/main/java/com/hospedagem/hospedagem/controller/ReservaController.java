@@ -3,6 +3,7 @@ package com.hospedagem.hospedagem.controller;
 import com.hospedagem.hospedagem.DTO.ReservaRequestDTO;
 import com.hospedagem.hospedagem.model.Reserva;
 import com.hospedagem.hospedagem.service.ReservaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Reserva> cadastrar(@RequestBody ReservaRequestDTO dto) {
+    public ResponseEntity<Reserva> cadastrar(@RequestBody @Valid ReservaRequestDTO dto) {
         return ResponseEntity.status(201).body(reservaService.cadastrar(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Reserva> atualizar(@PathVariable Integer id,
-                                             @RequestBody ReservaRequestDTO dto) {
+                                             @RequestBody @Valid ReservaRequestDTO dto) {
         return ResponseEntity.ok(reservaService.atualizar(id, dto));
     }
 

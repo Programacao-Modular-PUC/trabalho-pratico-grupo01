@@ -3,7 +3,7 @@ package com.hospedagem.hospedagem.service;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
-import com.hospedagem.hospedagem.exeptions.DataInvalidaException;
+import com.hospedagem.hospedagem.exceptions.DataInvalidaException;
 
 import java.time.LocalDate;
 

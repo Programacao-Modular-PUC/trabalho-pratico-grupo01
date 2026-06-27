@@ -38,7 +38,11 @@ public class ClienteService {
         Cliente existente = buscar(id);
         // valida CPF duplicado ignorando o próprio cliente
         repository.findByCpf(dados.getCpf())
-                .ifPresent(c -> { throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado"); });
+                .ifPresent(c -> {
+                    if (c.getId() != id) {
+                        throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado");
+                    }
+                });
 
         existente.setNome(dados.getNome());
         existente.setCpf(dados.getCpf());

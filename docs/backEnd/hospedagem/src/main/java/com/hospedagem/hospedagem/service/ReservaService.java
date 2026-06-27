@@ -1,8 +1,8 @@
 package com.hospedagem.hospedagem.service;
 
 import com.hospedagem.hospedagem.DTO.ReservaRequestDTO;
-import com.hospedagem.hospedagem.exeptions.DataInvalidaException;
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
+import com.hospedagem.hospedagem.exceptions.DataInvalidaException;
+import com.hospedagem.hospedagem.exceptions.QuartoIndisponivelException;
 import com.hospedagem.hospedagem.model.*;
 import com.hospedagem.hospedagem.repository.ClienteRepository;
 import com.hospedagem.hospedagem.repository.QuartoRepository;
@@ -84,6 +84,17 @@ public class ReservaService {
         Reserva existente = buscar(id);
 
         validarDatas(dto.getDataEntrada(), dto.getDataSaida());
+
+        Quarto quarto = existente.getQuarto();
+
+        if (quarto.getStatus() == StatusQuarto.INATIVO) {
+            throw new QuartoIndisponivelException("Quarto inativo não pode ser utilizado");
+        }
+
+        // Verifica conflito com outras reservas (excluindo a reserva atual)
+        if (reservaRepository.existeConflitoDeDatasExcluindoId(dto.getQuartoId(), dto.getDataEntrada(), dto.getDataSaida(), id)) {
+            throw new QuartoIndisponivelException("Quarto indisponível para o período informado");
+        }
 
         int diarias = (int) ChronoUnit.DAYS.between(dto.getDataEntrada(), dto.getDataSaida());
 

@@ -1,6 +1,5 @@
 package com.hospedagem.hospedagem.controller;
 
-
 import com.hospedagem.hospedagem.model.Residencia;
 import com.hospedagem.hospedagem.service.ResidenciaService;
 import org.springframework.beans.factory.annotation.Autowired;

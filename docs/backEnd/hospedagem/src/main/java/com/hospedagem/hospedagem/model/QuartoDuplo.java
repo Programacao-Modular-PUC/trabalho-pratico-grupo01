@@ -1,6 +1,6 @@
 package com.hospedagem.hospedagem.model;
 
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
+import com.hospedagem.hospedagem.exceptions.QuartoIndisponivelException;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

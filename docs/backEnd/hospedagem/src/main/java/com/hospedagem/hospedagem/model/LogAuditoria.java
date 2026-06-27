@@ -3,11 +3,9 @@ package com.hospedagem.hospedagem.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
+//import java.util.ArrayList;
+//import java.util.List;
+//import jakarta.persistence.*;         imports Não Utilizados
 
 @Entity
 @Table(name = "log_auditoria")

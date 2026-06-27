@@ -1,11 +1,23 @@
 package com.hospedagem.hospedagem.DTO;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class ReservaRequestDTO {
+    
+    @NotNull // impede entrada de valores nulos
     private Integer clienteId;
+
+    @NotNull // impede entrada de valores nulos
     private Integer quartoId;
+
+    @NotNull // impede entrada de valores nulos
+    @Future // impede entrada de datas passadas
     private LocalDate dataEntrada;
+
+    @NotNull // impede entrada de valores nulos
+    @Future // impede entrada de datas passadas
     private LocalDate dataSaida;
 
     public Integer getClienteId() {

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
-import com.hospedagem.hospedagem.exeptions.QuartoIndisponivelException;
-import com.hospedagem.hospedagem.exeptions.RecursoNaoPermitidoException;
+import com.hospedagem.hospedagem.exceptions.QuartoIndisponivelException;
+import com.hospedagem.hospedagem.exceptions.RecursoNaoPermitidoException;
 import com.hospedagem.hospedagem.model.QuartoIndividual;
 import com.hospedagem.hospedagem.model.StatusQuarto;
 
