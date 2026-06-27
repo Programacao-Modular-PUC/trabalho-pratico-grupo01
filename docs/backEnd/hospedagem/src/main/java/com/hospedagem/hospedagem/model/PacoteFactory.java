@@ -2,6 +2,8 @@ package com.hospedagem.hospedagem.model;
 
 /**
  * Builder para criação de pacotes personalizados de hospedagem.
+ * Segue SRP focando apenas na construção flexível de pacotes.
+ * Para pacotes pré-definidos, use PacotePredefinidoFactory.
  */
 public class PacoteFactory {
     
