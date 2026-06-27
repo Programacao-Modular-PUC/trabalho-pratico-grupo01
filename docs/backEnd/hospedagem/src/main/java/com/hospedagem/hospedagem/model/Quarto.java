@@ -3,6 +3,7 @@ package com.hospedagem.hospedagem.model;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "quartos")
 public class Quarto {
 
