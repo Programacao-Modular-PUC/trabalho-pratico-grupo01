@@ -523,6 +523,25 @@ h1, h2, h3, .logo span, .footer-logo span {
     color: var(--azul-marinho);
 }
 
+/* MODAL LOGIN */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
 /* RESPONSIVO */
 @media (max-width: 1024px) {
     .grid-quartos {
