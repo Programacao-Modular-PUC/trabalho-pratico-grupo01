@@ -4,6 +4,7 @@ import com.hospedagem.hospedagem.model.Cliente;
 import com.hospedagem.hospedagem.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,6 +15,9 @@ public class ClienteService {
 
     @Autowired
     private ClienteRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<Cliente> listarTodos() {
         return repository.findAll();
@@ -31,6 +35,7 @@ public class ClienteService {
         if (repository.existsByEmail(cliente.getEmail())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "E-mail já cadastrado");
         }
+        cliente.setSenha(passwordEncoder.encode(cliente.getSenha()));
         return repository.save(cliente);
     }
 
@@ -59,5 +64,16 @@ public class ClienteService {
 
     public List<Cliente> buscarPorNome(String nome) {
         return repository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public Cliente login(String email, String senha) {
+        Cliente cliente = repository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Email não encontrado"));
+        
+        if (!passwordEncoder.matches(senha, cliente.getSenha())) {
+            throw new RuntimeException("Senha incorreta");
+        }
+        
+        return cliente;
     }
 }

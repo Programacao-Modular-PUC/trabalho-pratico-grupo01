@@ -46,4 +46,20 @@ public class ClienteController {
         clienteService.excluir(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<Cliente> login(@RequestBody LoginRequest loginRequest) {
+        Cliente cliente = clienteService.login(loginRequest.getEmail(), loginRequest.getSenha());
+        return ResponseEntity.ok(cliente);
+    }
+
+    public static class LoginRequest {
+        private String email;
+        private String senha;
+
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+        public String getSenha() { return senha; }
+        public void setSenha(String senha) { this.senha = senha; }
+    }
 }

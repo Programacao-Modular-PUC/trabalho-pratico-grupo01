@@ -256,6 +256,7 @@ h1, h2, h3, .logo span, .footer-logo span {
     top: 14px;
     right: 14px;
     background: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     border: none;
     width: 32px;
@@ -540,6 +541,126 @@ h1, h2, h3, .logo span, .footer-logo span {
 
 body.modal-open {
     overflow: hidden;
+}
+
+.modal-content {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--texto-claro);
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--texto-escuro);
+}
+
+.modal-content h2 {
+    color: var(--azul-marinho);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.modal-content h3 {
+    color: var(--azul-marinho);
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.modal-content p {
+    color: var(--texto-claro);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--verde-mata);
+}
+
+.error-message {
+    color: #dc2626;
+    font-size: 13px;
+    margin-bottom: 12px;
+    display: none;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--verde-mata);
+    color: var(--branco);
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #005a3d;
+}
+
+.btn-cadastrar {
+    background-color: var(--azul-marinho);
+}
+
+.btn-cadastrar:hover {
+    background-color: #001a52;
+}
+
+.switch-link {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--texto-claro);
+}
+
+.switch-link a {
+    color: var(--verde-mata);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
 }
 
 /* RESPONSIVO */

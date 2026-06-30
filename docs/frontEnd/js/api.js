@@ -28,6 +28,7 @@ const api = {
     // Clientes
     buscarClientePorNome(nome) { return this.get(`/clientes/buscar?nome=${encodeURIComponent(nome)}`); },
     criarCliente(dados) { return this.post('/clientes', dados); },
+    login(dados) { return this.post('/clientes/login', dados); },
 
     // Reservas
     listarReservasPorCliente(clienteId) { return this.get(`/reservas/cliente/${clienteId}`); },
